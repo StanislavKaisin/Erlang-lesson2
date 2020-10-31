@@ -1,15 +1,18 @@
 -module(p05).
 -export([reverse/1]).
 
-reverse([])->
-  [];
-reverse([_Single])->
-  [_Single];
-reverse([H|T])->
-  % io:format("~p~n", [p01:last([H|T])]),
-  reverse([p01:last([H|T])|[T]]).
-
-
-
-
- %p01:last(_List) 
+reverse(List)->
+  Length=p04:len(List),
+  ReverseList=[],
+  reverse(List, Length, ReverseList).
+  
+reverse([H], 1, ReverseList)->
+  % io:format("Length: ~p ~n", [Length]),
+  % io:format("ReverseList= ~p ~n", [ReverseList]),
+  % io:format("H= ~p ~n", [H]),
+  [H|ReverseList];
+reverse([H|T], Length, ReverseList)->
+  % io:format("[H|T]= ~p ~n", [[H|T]]),
+  % io:format("Length= ~p ~n", [Length]),
+  % io:format("ReverseList= ~p ~n", [ReverseList]),
+  reverse(T, Length-1, [H|ReverseList]).
